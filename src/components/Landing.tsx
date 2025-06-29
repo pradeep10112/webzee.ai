@@ -1,17 +1,10 @@
-
-const Landing = () => {
+function Landing() {
   return (
-    <section className="text-center py-16 bg-gray-900 text-white space-y-4">
-      <h1 className="text-5xl font-bold">Welcome to Webzee.ai</h1>
-      <p className="text-lg">Create AI-generated landing pages instantly.</p>
-      <a
-        href="#features"
-        className="bg-blue-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-blue-500"
-      >
-        Explore Features
-      </a>
-    </section>
+    <header className="text-center py-10">
+      <h1 className="text-5xl font-bold">🚀 Webzee AI Builder</h1>
+      <p className="mt-2 text-lg text-gray-600">Build AI-powered websites instantly</p>
+    </header>
   );
-};
+}
 
 export default Landing;

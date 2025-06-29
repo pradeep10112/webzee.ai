@@ -1,9 +1,7 @@
-
 import Landing from "./components/Landing";
 import Features from "./components/Features";
-// import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
-
+import Newsletter from "./components/Newsletter";
 import HeroGenerator from "./components/HeroGenerator";
 import PricingGenerator from "./components/PricingGenerator";
 import TestimonialGenerator from "./components/TestimonialGenerator";
@@ -31,7 +29,7 @@ function App() {
         <SectionManager />
         <ExportButton sections={sections} />
       </div>
-      {/* <Newsletter /> */}
+      <Newsletter />
       <Footer />
     </div>
   );

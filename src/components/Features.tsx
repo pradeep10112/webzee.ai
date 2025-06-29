@@ -1,16 +1,11 @@
-
-const Features = () => {
+function Features() {
   return (
-    <section id="features" className="py-14 space-y-6">
-      <h2 className="text-3xl font-bold text-center">Features</h2>
-      <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-        <div className="p-4 border rounded-lg">✨ AI Hero Section Generator</div>
-        <div className="p-4 border rounded-lg">📦 Smart Pricing Section Creator</div>
-        <div className="p-4 border rounded-lg">🖼️ Image Prompt Generator</div>
-        <div className="p-4 border rounded-lg">📣 Testimonial Auto Generator</div>
-      </div>
+    <section className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 my-10">
+      <div className="p-4 bg-gray-100 rounded-lg">⚙️ Drag & Drop Builder</div>
+      <div className="p-4 bg-gray-100 rounded-lg">🎨 AI Image Generator</div>
+      <div className="p-4 bg-gray-100 rounded-lg">📊 Smart Pricing Tables</div>
     </section>
   );
-};
+}
 
 export default Features;

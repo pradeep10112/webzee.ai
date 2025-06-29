@@ -1,25 +1,26 @@
-function NewsletterForm() {
+
+
+const NewsletterForm = () => {
   return (
-    <section className="text-center my-10">
-      <h2 className="text-2xl font-semibold">📧 Subscribe for Updates!</h2>
-      <form
-        action="https://formspree.io/f/xrbkrnko"
-        method="POST"
-        className="mt-4 space-y-4"
-      >
+    <div className="bg-gray-800 text-white p-6 rounded-lg mt-10 text-center">
+      <h2 className="text-2xl mb-4">Subscribe to our updates!</h2>
+      <form action="https://formspree.io/f/xrbkrnko" method="POST">
         <input
           type="email"
           name="email"
           placeholder="Enter your email"
+          className="p-2 rounded text-black"
           required
-          className="border px-4 py-2 rounded w-72"
         />
-        <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
+        <button
+          type="submit"
+          className="ml-2 px-4 py-2 bg-blue-500 rounded hover:bg-blue-600"
+        >
           Subscribe
         </button>
       </form>
-    </section>
+    </div>
   );
-}
+};
 
 export default NewsletterForm;

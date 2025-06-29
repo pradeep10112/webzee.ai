@@ -1,15 +1,13 @@
+import React from "react";
+
 function Landing() {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-violet-500 to-fuchsia-500 flex flex-col items-center justify-center text-white p-6">
-      <h1 className="text-5xl font-bold mb-4 text-center">🚀 Welcome to WebCraft</h1>
-      <p className="text-lg text-center max-w-xl mb-8">
-        AI-powered Website Section Generator for Hero, Pricing, Testimonials, and Images.  
-        Build faster than ever, no coding needed ⚡.
-      </p>
-      <a href="#app" className="bg-white text-black font-bold py-2 px-6 rounded-xl hover:bg-gray-200 transition">
-        Start Building Now
-      </a>
-    </div>
-  )
+    <section className="text-center py-20 bg-gradient-to-r from-purple-600 to-blue-500 text-white">
+      <h1 className="text-5xl font-bold mb-4">Welcome to Webzee AI ✨</h1>
+      <p className="text-lg mb-6">Your AI-powered website builder for instant, beautiful sites.</p>
+      <a href="#mainApp" className="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold">Launch App</a>
+    </section>
+  );
 }
+
 export default Landing;

@@ -3,7 +3,7 @@
 const NewsletterForm = () => {
   return (
     <div className="bg-gray-800 text-white p-6 rounded-lg mt-10 text-center">
-      <h2 className="text-2xl mb-4">Subscribe to our updates!</h2>
+      <h2 className="text-2xl mb-4">Subscribe to our new updates!</h2>
       <form action="https://formspree.io/f/xrbkrnko" method="POST">
         <input
           type="email"

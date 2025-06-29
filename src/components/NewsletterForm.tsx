@@ -1,4 +1,4 @@
-function Newsletter() {
+function NewsletterForm() {
   return (
     <section className="text-center my-10">
       <h2 className="text-2xl font-semibold">📧 Subscribe for Updates!</h2>
@@ -22,4 +22,4 @@ function Newsletter() {
   );
 }
 
-export default Newsletter;
+export default NewsletterForm;

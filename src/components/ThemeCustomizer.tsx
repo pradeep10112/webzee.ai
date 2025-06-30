@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { WebsiteData } from "../App";
+import TemplateGallery from "./TemplateGallery";
 
 interface ThemeCustomizerProps {
   websiteData: WebsiteData;
@@ -9,24 +10,24 @@ interface ThemeCustomizerProps {
 }
 
 export default function ThemeCustomizer({ websiteData, updateWebsiteData, onNext, onBack }: ThemeCustomizerProps) {
-  const [activeTab, setActiveTab] = useState("colors");
+  const [activeTab, setActiveTab] = useState("templates");
 
   const colorPresets = [
-    { name: "Blue", primary: "#3B82F6", secondary: "#1F2937" },
-    { name: "Purple", primary: "#8B5CF6", secondary: "#1F2937" },
-    { name: "Green", primary: "#10B981", secondary: "#1F2937" },
-    { name: "Red", primary: "#EF4444", secondary: "#1F2937" },
-    { name: "Orange", primary: "#F97316", secondary: "#1F2937" },
-    { name: "Teal", primary: "#14B8A6", secondary: "#1F2937" }
+    { name: "Ocean Blue", primary: "#3B82F6", secondary: "#1F2937" },
+    { name: "Purple Dream", primary: "#8B5CF6", secondary: "#1F2937" },
+    { name: "Emerald Green", primary: "#10B981", secondary: "#1F2937" },
+    { name: "Sunset Orange", primary: "#F97316", secondary: "#1F2937" },
+    { name: "Rose Pink", primary: "#EC4899", secondary: "#1F2937" },
+    { name: "Cyan Blue", primary: "#06B6D4", secondary: "#1F2937" }
   ];
 
-  const fontPresets = [
-    { name: "Inter", value: "Inter" },
-    { name: "Roboto", value: "Roboto" },
-    { name: "Open Sans", value: "Open Sans" },
-    { name: "Poppins", value: "Poppins" },
-    { name: "Montserrat", value: "Montserrat" },
-    { name: "Lato", value: "Lato" }
+  const fontOptions = [
+    { name: "Inter", value: "Inter", preview: "Aa" },
+    { name: "Poppins", value: "Poppins", preview: "Aa" },
+    { name: "Roboto", value: "Roboto", preview: "Aa" },
+    { name: "Open Sans", value: "Open Sans", preview: "Aa" },
+    { name: "Montserrat", value: "Montserrat", preview: "Aa" },
+    { name: "Playfair Display", value: "Playfair Display", preview: "Aa" }
   ];
 
   const layoutPresets = [
@@ -48,234 +49,239 @@ export default function ThemeCustomizer({ websiteData, updateWebsiteData, onNext
   };
 
   return (
-    <div className="max-w-6xl mx-auto">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+    <div className="max-w-7xl mx-auto animate-fade-in">
+      {/* Header */}
+      <div className="text-center mb-8 animate-slide-down">
+        <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
           Customize Your Theme
         </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400">
-          Choose colors, fonts, and layout to match your brand identity
+        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Choose from beautiful templates and customize colors, fonts, and layout to match your brand
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Theme Preview */}
-        <div className="lg:col-span-1">
-          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Theme Preview</h2>
-            
-            <div 
-              className="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700"
-              style={{ fontFamily: websiteData.theme.fontFamily }}
-            >
-              {/* Header Preview */}
-              <div 
-                className="p-4"
-                style={{ backgroundColor: websiteData.theme.primaryColor }}
-              >
-                <div className="flex items-center justify-between">
-                  <h3 className="text-white font-semibold">{websiteData.story.businessName || "Your Business"}</h3>
-                  <nav className="flex space-x-4">
-                    <a href="#" className="text-white/80 hover:text-white text-sm">Home</a>
-                    <a href="#" className="text-white/80 hover:text-white text-sm">About</a>
-                    <a href="#" className="text-white/80 hover:text-white text-sm">Contact</a>
-                  </nav>
-                </div>
-              </div>
-
-              {/* Content Preview */}
-              <div className="p-6 bg-white dark:bg-gray-800">
-                <h4 className="text-xl font-bold mb-2" style={{ color: websiteData.theme.primaryColor }}>
-                  Welcome to Our Site
-                </h4>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  This is how your content will look with the selected theme.
-                </p>
-                <button 
-                  className="px-4 py-2 rounded-lg text-white font-medium"
-                  style={{ backgroundColor: websiteData.theme.primaryColor }}
-                >
-                  Get Started
-                </button>
-              </div>
-            </div>
-          </div>
+      {/* Tab Navigation */}
+      <div className="flex justify-center mb-8">
+        <div className="bg-gray-100 dark:bg-gray-800 rounded-xl p-1">
+          <button
+            onClick={() => setActiveTab("templates")}
+            className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+              activeTab === "templates"
+                ? "bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-md"
+                : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+            }`}
+          >
+            🎨 Templates
+          </button>
+          <button
+            onClick={() => setActiveTab("colors")}
+            className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+              activeTab === "colors"
+                ? "bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-md"
+                : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+            }`}
+          >
+            🎨 Colors
+          </button>
+          <button
+            onClick={() => setActiveTab("fonts")}
+            className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+              activeTab === "fonts"
+                ? "bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-md"
+                : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+            }`}
+          >
+            📝 Fonts
+          </button>
         </div>
+      </div>
 
-        {/* Theme Controls */}
+      {/* Content */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Main Content */}
         <div className="lg:col-span-2">
-          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6">
-            <div className="flex space-x-4 mb-6">
-              <button
-                onClick={() => setActiveTab("colors")}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  activeTab === "colors"
-                    ? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
-                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                }`}
-              >
-                Colors
-              </button>
-              <button
-                onClick={() => setActiveTab("fonts")}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  activeTab === "fonts"
-                    ? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
-                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                }`}
-              >
-                Fonts
-              </button>
-              <button
-                onClick={() => setActiveTab("layout")}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  activeTab === "layout"
-                    ? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
-                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                }`}
-              >
-                Layout
-              </button>
-            </div>
+          {activeTab === "templates" && (
+            <TemplateGallery websiteData={websiteData} updateWebsiteData={updateWebsiteData} />
+          )}
 
-            {activeTab === "colors" && (
-              <div className="space-y-6">
+          {activeTab === "colors" && (
+            <div className="card p-8 animate-slide-up">
+              <h2 className="text-2xl font-bold gradient-text mb-6">Color Customization</h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Color Presets</h3>
-                  <div className="grid grid-cols-3 gap-3">
-                    {colorPresets.map((preset) => (
-                      <button
-                        key={preset.name}
-                        onClick={() => applyColorPreset(preset)}
-                        className="p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-gray-300 dark:hover:border-gray-600 transition-colors"
-                      >
-                        <div className="flex items-center space-x-2 mb-2">
-                          <div 
-                            className="w-4 h-4 rounded-full"
-                            style={{ backgroundColor: preset.primary }}
-                          ></div>
-                          <div 
-                            className="w-4 h-4 rounded-full"
-                            style={{ backgroundColor: preset.secondary }}
-                          ></div>
-                        </div>
-                        <span className="text-sm font-medium text-gray-900 dark:text-white">{preset.name}</span>
-                      </button>
-                    ))}
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                    Primary Color
+                  </label>
+                  <div className="flex items-center space-x-4">
+                    <input
+                      type="color"
+                      value={websiteData.theme.primaryColor}
+                      onChange={(e) => updateWebsiteData({
+                        theme: { ...websiteData.theme, primaryColor: e.target.value }
+                      })}
+                      className="w-16 h-16 rounded-lg border-2 border-gray-300 dark:border-gray-600 cursor-pointer"
+                    />
+                    <input
+                      type="text"
+                      value={websiteData.theme.primaryColor}
+                      onChange={(e) => updateWebsiteData({
+                        theme: { ...websiteData.theme, primaryColor: e.target.value }
+                      })}
+                      className="input-field flex-1"
+                      placeholder="#3B82F6"
+                    />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      Primary Color
-                    </label>
-                    <div className="flex space-x-2">
-                      <input
-                        type="color"
-                        value={websiteData.theme.primaryColor}
-                        onChange={(e) => updateTheme("primaryColor", e.target.value)}
-                        className="w-12 h-10 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer"
-                      />
-                      <input
-                        type="text"
-                        value={websiteData.theme.primaryColor}
-                        onChange={(e) => updateTheme("primaryColor", e.target.value)}
-                        className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      Secondary Color
-                    </label>
-                    <div className="flex space-x-2">
-                      <input
-                        type="color"
-                        value={websiteData.theme.secondaryColor}
-                        onChange={(e) => updateTheme("secondaryColor", e.target.value)}
-                        className="w-12 h-10 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer"
-                      />
-                      <input
-                        type="text"
-                        value={websiteData.theme.secondaryColor}
-                        onChange={(e) => updateTheme("secondaryColor", e.target.value)}
-                        className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
-                      />
-                    </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                    Secondary Color
+                  </label>
+                  <div className="flex items-center space-x-4">
+                    <input
+                      type="color"
+                      value={websiteData.theme.secondaryColor}
+                      onChange={(e) => updateWebsiteData({
+                        theme: { ...websiteData.theme, secondaryColor: e.target.value }
+                      })}
+                      className="w-16 h-16 rounded-lg border-2 border-gray-300 dark:border-gray-600 cursor-pointer"
+                    />
+                    <input
+                      type="text"
+                      value={websiteData.theme.secondaryColor}
+                      onChange={(e) => updateWebsiteData({
+                        theme: { ...websiteData.theme, secondaryColor: e.target.value }
+                      })}
+                      className="input-field flex-1"
+                      placeholder="#1F2937"
+                    />
                   </div>
                 </div>
               </div>
-            )}
 
-            {activeTab === "fonts" && (
+              <div className="mt-8">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Color Presets</h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {colorPresets.map((preset, index) => (
+                    <button
+                      key={index}
+                      onClick={() => updateWebsiteData({
+                        theme: { ...websiteData.theme, primaryColor: preset.primary, secondaryColor: preset.secondary }
+                      })}
+                      className="p-4 rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200 hover:shadow-md"
+                    >
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div 
+                          className="w-6 h-6 rounded-full border border-gray-300"
+                          style={{ backgroundColor: preset.primary }}
+                        ></div>
+                        <div 
+                          className="w-6 h-6 rounded-full border border-gray-300"
+                          style={{ backgroundColor: preset.secondary }}
+                        ></div>
+                      </div>
+                      <span className="text-sm font-medium text-gray-900 dark:text-white">
+                        {preset.name}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "fonts" && (
+            <div className="card p-8 animate-slide-up">
+              <h2 className="text-2xl font-bold gradient-text mb-6">Typography</h2>
+              
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Font Family</h3>
-                  <div className="grid grid-cols-2 gap-3">
-                    {fontPresets.map((font) => (
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                    Font Family
+                  </label>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    {fontOptions.map((font) => (
                       <button
                         key={font.value}
-                        onClick={() => updateTheme("fontFamily", font.value)}
-                        className={`p-3 border rounded-lg text-left transition-colors ${
+                        onClick={() => updateWebsiteData({
+                          theme: { ...websiteData.theme, fontFamily: font.value }
+                        })}
+                        className={`p-4 rounded-xl border-2 transition-all duration-200 hover:shadow-md ${
                           websiteData.theme.fontFamily === font.value
-                            ? "border-blue-300 bg-blue-50 dark:border-blue-600 dark:bg-blue-900/20"
+                            ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
                             : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
                         }`}
-                        style={{ fontFamily: font.value }}
                       >
-                        <span className="font-medium text-gray-900 dark:text-white">{font.name}</span>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                          The quick brown fox jumps over the lazy dog
-                        </p>
+                        <div 
+                          className="text-2xl font-bold mb-2"
+                          style={{ fontFamily: font.value }}
+                        >
+                          {font.preview}
+                        </div>
+                        <span className="text-sm font-medium text-gray-900 dark:text-white">
+                          {font.name}
+                        </span>
                       </button>
                     ))}
                   </div>
                 </div>
               </div>
-            )}
+            </div>
+          )}
+        </div>
 
-            {activeTab === "layout" && (
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Layout Style</h3>
-                  <div className="grid grid-cols-2 gap-4">
-                    {layoutPresets.map((layout) => (
-                      <button
-                        key={layout.value}
-                        onClick={() => updateTheme("layout", layout.value)}
-                        className={`p-4 border rounded-lg text-left transition-colors ${
-                          websiteData.theme.layout === layout.value
-                            ? "border-blue-300 bg-blue-50 dark:border-blue-600 dark:bg-blue-900/20"
-                            : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
-                        }`}
-                      >
-                        <h4 className="font-medium text-gray-900 dark:text-white">{layout.name}</h4>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{layout.description}</p>
-                      </button>
-                    ))}
-                  </div>
+        {/* Preview Sidebar */}
+        <div className="lg:col-span-1">
+          <div className="card p-6 sticky top-6">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Live Preview</h3>
+            
+            <div className="space-y-4">
+              <div className="p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Sample Heading</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  This is how your text will look with the selected font and colors.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <div 
+                    className="w-8 h-8 rounded-full border border-gray-300"
+                    style={{ backgroundColor: websiteData.theme.primaryColor }}
+                  ></div>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">Primary Color</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div 
+                    className="w-8 h-8 rounded-full border border-gray-300"
+                    style={{ backgroundColor: websiteData.theme.secondaryColor }}
+                  ></div>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">Secondary Color</span>
                 </div>
               </div>
-            )}
+
+              <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Font: <span className="font-medium">{websiteData.theme.fontFamily}</span>
+                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Layout: <span className="font-medium">{websiteData.theme.layout}</span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="mt-8 flex justify-between">
-        <button
-          onClick={onBack}
-          className="px-6 py-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium"
-        >
-          Back
+      {/* Navigation */}
+      <div className="mt-8 flex justify-between items-center">
+        <button onClick={onBack} className="btn-secondary">
+          ← Back
         </button>
         
-        <button
-          onClick={onNext}
-          className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:from-blue-600 hover:to-purple-700"
-        >
-          Preview & Deploy
+        <button onClick={onNext} className="btn-primary">
+          Continue to Preview →
         </button>
       </div>
     </div>

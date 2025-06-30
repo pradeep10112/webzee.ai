@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { WebsiteData } from "../App";
+import AISuggestions from "./AISuggestions";
 
 interface StoryBuilderProps {
   websiteData: WebsiteData;
@@ -92,7 +93,7 @@ export default function StoryBuilder({ websiteData, updateWebsiteData, onNext, o
   };
 
   return (
-    <div className="max-w-6xl mx-auto animate-fade-in">
+    <div className="max-w-7xl mx-auto animate-fade-in">
       {/* Hero Section */}
       <div className="text-center mb-12 animate-slide-down">
         <div className="relative">
@@ -113,152 +114,162 @@ export default function StoryBuilder({ websiteData, updateWebsiteData, onNext, o
         </div>
       </div>
 
-      <div className="card p-8 animate-slide-up">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="space-y-6">
-            <div className="group">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center">
-                <span className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs mr-2">1</span>
-                Business Name *
-              </label>
-              <input
-                type="text"
-                value={websiteData.story.businessName}
-                onChange={(e) => updateWebsiteData({
-                  story: { ...websiteData.story, businessName: e.target.value }
-                })}
-                className="input-field group-hover:shadow-lg transition-all duration-300"
-                placeholder="Enter your business name"
-              />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Main Form */}
+        <div className="lg:col-span-2">
+          <div className="card p-8 animate-slide-up">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-6">
+                <div className="group">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center">
+                    <span className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                    Business Name *
+                  </label>
+                  <input
+                    type="text"
+                    value={websiteData.story.businessName}
+                    onChange={(e) => updateWebsiteData({
+                      story: { ...websiteData.story, businessName: e.target.value }
+                    })}
+                    className="input-field group-hover:shadow-lg transition-all duration-300"
+                    placeholder="Enter your business name"
+                  />
+                </div>
+
+                <div className="group">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center">
+                    <span className="w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs mr-2">2</span>
+                    Target Audience
+                  </label>
+                  <input
+                    type="text"
+                    value={websiteData.story.targetAudience}
+                    onChange={(e) => updateWebsiteData({
+                      story: { ...websiteData.story, targetAudience: e.target.value }
+                    })}
+                    className="input-field group-hover:shadow-lg transition-all duration-300"
+                    placeholder="e.g., Small businesses, Tech startups"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <div className="group">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center">
+                    <span className="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs mr-2">3</span>
+                    Business Description *
+                  </label>
+                  <textarea
+                    value={websiteData.story.description}
+                    onChange={(e) => updateWebsiteData({
+                      story: { ...websiteData.story, description: e.target.value }
+                    })}
+                    rows={4}
+                    className="input-field group-hover:shadow-lg transition-all duration-300 resize-none"
+                    placeholder="Describe what your business does, your mission, and what makes you unique..."
+                  />
+                </div>
+              </div>
             </div>
 
-            <div className="group">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center">
-                <span className="w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs mr-2">2</span>
-                Target Audience
-              </label>
-              <input
-                type="text"
-                value={websiteData.story.targetAudience}
-                onChange={(e) => updateWebsiteData({
-                  story: { ...websiteData.story, targetAudience: e.target.value }
-                })}
-                className="input-field group-hover:shadow-lg transition-all duration-300"
-                placeholder="e.g., Small businesses, Tech startups"
-              />
-            </div>
-          </div>
+            <div className="mt-8 space-y-6">
+              <div className="group">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center">
+                  <span className="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs mr-2">4</span>
+                  Services/Products (one per line)
+                </label>
+                <textarea
+                  value={websiteData.story.services.join('\n')}
+                  onChange={(e) => updateWebsiteData({
+                    story: { ...websiteData.story, services: e.target.value.split('\n').filter(s => s.trim()) }
+                  })}
+                  rows={3}
+                  className="input-field group-hover:shadow-lg transition-all duration-300 resize-none"
+                  placeholder="Web Design&#10;Digital Marketing&#10;Consulting"
+                />
+              </div>
 
-          <div className="space-y-6">
-            <div className="group">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center">
-                <span className="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs mr-2">3</span>
-                Business Description *
-              </label>
-              <textarea
-                value={websiteData.story.description}
-                onChange={(e) => updateWebsiteData({
-                  story: { ...websiteData.story, description: e.target.value }
-                })}
-                rows={4}
-                className="input-field group-hover:shadow-lg transition-all duration-300 resize-none"
-                placeholder="Describe what your business does, your mission, and what makes you unique..."
-              />
+              <div className="group">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center">
+                  <span className="w-6 h-6 bg-pink-500 text-white rounded-full flex items-center justify-center text-xs mr-2">5</span>
+                  Business Goals
+                </label>
+                <textarea
+                  value={websiteData.story.goals.join('\n')}
+                  onChange={(e) => updateWebsiteData({
+                    story: { ...websiteData.story, goals: e.target.value.split('\n').filter(s => s.trim()) }
+                  })}
+                  rows={3}
+                  className="input-field group-hover:shadow-lg transition-all duration-300 resize-none"
+                  placeholder="Increase online presence&#10;Generate more leads&#10;Showcase portfolio"
+                />
+              </div>
+            </div>
+
+            {/* Progress Indicator */}
+            <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">AI Analysis Progress</h3>
+                <div className="flex space-x-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                  <div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center space-x-3">
+                  <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
+                    <span className="text-white text-xs">✓</span>
+                  </div>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">Analyzing business structure</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
+                    <span className="text-white text-xs">✓</span>
+                  </div>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">Identifying target audience</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center animate-pulse">
+                    <span className="text-white text-xs">AI</span>
+                  </div>
+                  <span className="text-sm text-gray-600 dark:text-gray-300">Generating website structure</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 flex justify-between items-center">
+              <button
+                onClick={onBack}
+                className="btn-secondary"
+              >
+                ← Back
+              </button>
+              
+              <button
+                onClick={handleStorySubmit}
+                disabled={isGenerating}
+                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-3"
+              >
+                {isGenerating ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Generating Website...</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-xl">✨</span>
+                    <span>Generate My Website</span>
+                  </>
+                )}
+              </button>
             </div>
           </div>
         </div>
 
-        <div className="mt-8 space-y-6">
-          <div className="group">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center">
-              <span className="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs mr-2">4</span>
-              Services/Products (one per line)
-            </label>
-            <textarea
-              value={websiteData.story.services.join('\n')}
-              onChange={(e) => updateWebsiteData({
-                story: { ...websiteData.story, services: e.target.value.split('\n').filter(s => s.trim()) }
-              })}
-              rows={3}
-              className="input-field group-hover:shadow-lg transition-all duration-300 resize-none"
-              placeholder="Web Design&#10;Digital Marketing&#10;Consulting"
-            />
-          </div>
-
-          <div className="group">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center">
-              <span className="w-6 h-6 bg-pink-500 text-white rounded-full flex items-center justify-center text-xs mr-2">5</span>
-              Business Goals
-            </label>
-            <textarea
-              value={websiteData.story.goals.join('\n')}
-              onChange={(e) => updateWebsiteData({
-                story: { ...websiteData.story, goals: e.target.value.split('\n').filter(s => s.trim()) }
-              })}
-              rows={3}
-              className="input-field group-hover:shadow-lg transition-all duration-300 resize-none"
-              placeholder="Increase online presence&#10;Generate more leads&#10;Showcase portfolio"
-            />
-          </div>
-        </div>
-
-        {/* Progress Indicator */}
-        <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">AI Analysis Progress</h3>
-            <div className="flex space-x-2">
-              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-              <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-              <div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
-            </div>
-          </div>
-          <div className="space-y-2">
-            <div className="flex items-center space-x-3">
-              <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs">✓</span>
-              </div>
-              <span className="text-sm text-gray-600 dark:text-gray-300">Analyzing business structure</span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs">✓</span>
-              </div>
-              <span className="text-sm text-gray-600 dark:text-gray-300">Identifying target audience</span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center animate-pulse">
-                <span className="text-white text-xs">AI</span>
-              </div>
-              <span className="text-sm text-gray-600 dark:text-gray-300">Generating website structure</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 flex justify-between items-center">
-          <button
-            onClick={onBack}
-            className="btn-secondary"
-          >
-            ← Back
-          </button>
-          
-          <button
-            onClick={handleStorySubmit}
-            disabled={isGenerating}
-            className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-3"
-          >
-            {isGenerating ? (
-              <>
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                <span>Generating Website...</span>
-              </>
-            ) : (
-              <>
-                <span className="text-xl">✨</span>
-                <span>Generate My Website</span>
-              </>
-            )}
-          </button>
+        {/* AI Suggestions Sidebar */}
+        <div className="lg:col-span-1">
+          <AISuggestions websiteData={websiteData} updateWebsiteData={updateWebsiteData} />
         </div>
       </div>
     </div>

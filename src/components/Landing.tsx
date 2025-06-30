@@ -20,7 +20,7 @@ export default function Landing({ onStartBuilder }: LandingProps) {
             <span className="text-white text-3xl font-bold">AI</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text text-shadow-lg">
-            WebCraft AI
+            Buildows AI
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
             Create beautiful, professional websites with AI-powered storytelling

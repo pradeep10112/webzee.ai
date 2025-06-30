@@ -16,7 +16,7 @@ export default function Header({ currentStep, steps, onStepChange, previewMode, 
           <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg animate-pulse-slow">
             <span className="text-white font-bold text-lg">AI</span>
           </div>
-          <h1 className="text-2xl font-bold gradient-text">WebCraft AI</h1>
+          <h1 className="text-2xl font-bold gradient-text">Buildows AI</h1>
         </div>
         
         <nav className="hidden md:flex space-x-1">

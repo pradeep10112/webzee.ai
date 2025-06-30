@@ -1,69 +1,59 @@
-# React + TypeScript + Vite
+# 🚀 Buildows - AI Website Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A revolutionary AI-powered website builder that creates complete multi-screen websites from business descriptions. Unlike traditional builders that focus on landing pages, Buildows generates full websites with navigation, multiple pages, and professional themes.
 
-Currently, two official plugins are available:
+## ✨ Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Story-Driven Creation**: Tell your business story, get a complete website
+- **AI Suggestions**: Intelligent content and design recommendations
+- **Template Gallery**: 6+ professional templates across different industries
+- **Multi-Page Websites**: Not just landing pages - complete websites
+- **Real-Time Preview**: See changes instantly
+- **Progress Tracking**: Visual progress indicators and guidance
+- **Export & Deploy**: Multiple export formats and deployment options
 
-## Expanding the ESLint configuration
+## 🚀 Quick Start
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# Install dependencies
+npm install
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Start development server
+npm run dev
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Open http://localhost:5173
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🎯 How It Works
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Tell Your Story** - Describe your business, audience, and goals
+2. **AI Generates Structure** - Automatic page and navigation creation
+3. **Customize & Refine** - Choose templates, colors, fonts
+4. **Preview & Deploy** - Real-time preview and export options
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🎨 Templates Available
+
+- **Modern Business** - Corporate companies
+- **Creative Agency** - Agencies & studios  
+- **Tech Startup** - Technology companies
+- **Restaurant** - Food businesses
+- **Portfolio** - Personal work showcase
+- **E-commerce** - Online stores
+
+## 🛠️ Tech Stack
+
+- React 18 + TypeScript
+- Tailwind CSS 3.4
+- Vite build tool
+- Modern animations and UI
+
+## 📱 Responsive & Modern
+
+- Mobile-first design
+- Beautiful animations
+- Dark mode support
+- Professional UI/UX
+
+---
+
+**Transform your business story into a stunning website in minutes!** 🎉

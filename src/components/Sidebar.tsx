@@ -16,10 +16,10 @@ export default function Sidebar({ currentStep, steps, onStepChange, websiteData 
         <div className="mb-8">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-              <span className="text-white text-xl font-bold">W</span>
+              <span className="text-white text-xl font-bold">B</span>
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900 dark:text-white">WebCraft</h1>
+              <h1 className="text-xl font-bold text-gray-900 dark:text-white">Buildows</h1>
               <p className="text-sm text-gray-500 dark:text-gray-400">AI Website Builder</p>
             </div>
           </div>

@@ -1,36 +1,31 @@
-import Landing from "./components/Landing";
-import Features from "./components/Features";
-import Footer from "./components/Footer";
-import Newsletter from "./components/NewsletterForm";
-import HeroGenerator from "./components/HeroGenerator";
-import PricingGenerator from "./components/PricingGenerator";
-import TestimonialGenerator from "./components/TestimonialGenerator";
-import ImageGenerator from "./components/ImageGenerator";
-import ExportButton from "./components/ExportButton";
-import SectionManager from "./components/SectionManager";
-import ThemeToggle from "./components/ThemeToggle";
 import { useState } from "react";
+import Landing from "./components/Landing";
 
 import "./index.css";
 
 function App() {
-  const [sections] = useState<string[]>([]);
+  const [showBuilder, setShowBuilder] = useState(false);
+
+  if (!showBuilder) {
+    return <Landing onStartBuilder={() => setShowBuilder(true)} />;
+  }
 
   return (
-    <div className="font-sans text-gray-800">
-      <Landing />
-      <Features />
-      <div className="p-4 space-y-6">
-        <ThemeToggle />
-        <HeroGenerator />
-        <PricingGenerator />
-        <TestimonialGenerator />
-        <ImageGenerator />
-        <SectionManager />
-        <ExportButton sections={sections} />
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold gradient-text mb-4">
+          🎉 Website Builder Coming Soon!
+        </h1>
+        <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+          The full AI website builder is being loaded...
+        </p>
+        <button 
+          onClick={() => setShowBuilder(false)}
+          className="btn-secondary"
+        >
+          ← Back to Landing
+        </button>
       </div>
-      <Newsletter />
-      <Footer />
     </div>
   );
 }
